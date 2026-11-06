@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal Río Claro</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="site-header">
+        <div class="brand-block">
+          <a class="portal-brand-link" href="/">
+            <span class="brand-mark">RC</span>
+          </a>
+          <div>
+            <p class="eyebrow">Plataforma operativa</p>
+            <h1>Río Claro</h1>
+          </div>
+        </div>
+
+        <nav class="main-nav" aria-label="Navegación principal">
+          <button class="nav-button active" type="button" data-view="home">Inicio</button>
+        </nav>
+
+        <div class="session-controls">
+          <div class="user-badge" id="user-badge">Visitante</div>
+          <button class="secondary-button" type="button" id="logout-button" hidden>Cerrar sesión</button>
+        </div>
+      </header>
+
+      <main class="content-area">
+        <p class="runtime-notice" id="runtime-notice" role="status" hidden></p>
+        <section class="view-panel active" id="home-view">
+          <div class="hero-card">
+            <div>
+              <p class="eyebrow">Operaciones y atención</p>
+              <h2>Gestión digital de usuarios, clientes, ventas y servicio</h2>
+            </div>
+            <button class="primary-button" type="button" id="show-auth-button">Acceder al sistema</button>
+          </div>
+
+          <div class="module-grid">
+            <article class="module-card">
+              <h3>Usuarios y autenticación</h3>
+              <p>Registro, login, roles y manejo de permisos para clientes y administradores.</p>
+            </article>
+            <article class="module-card">
+              <h3>Inventario</h3>
+              <p>Control de stock, disponibilidad y alertas de bajo inventario en tiempo real.</p>
+            </article>
+            <article class="module-card">
+              <h3>Ventas y reportes</h3>
+              <p>Informes de ventas, métricas de uso y análisis operativos.</p>
+            </article>
+            <article class="module-card">
+              <h3>Facturación</h3>
+              <p>Generación de facturas y seguimiento del estado de pago.</p>
+            </article>
+            <article class="module-card">
+              <h3>Notificaciones</h3>
+              <p>Alertas para administradores y clientes sobre eventos relevantes.</p>
+            </article>
+            <article class="module-card">
+              <h3>Chatbot</h3>
+              <p>Soporte asistido con conversación multimodal y atención al cliente.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="view-panel" id="auth-view">
+          <div class="auth-grid auth-stack">
+            <form class="panel-card form-card" id="login-form">
+              <h3>Iniciar sesión</h3>
+              <label>
+                Correo electrónico
+                <input type="email" name="email" placeholder="tu@correo.com" required />
+              </label>
+              <label>
+                Contraseña
+                <input type="password" name="password" placeholder="••••••••" required />
+              </label>
+              <button class="primary-button" type="submit">Entrar</button>
+              <button class="text-button" type="button" id="password-reset-button">Recuperar contraseña</button>
+            </form>
+
+            <button class="secondary-button register-toggle" id="show-register-button" type="button" aria-controls="register-form" aria-expanded="false">
+              Registrar cuenta
+            </button>
+
+            <form class="panel-card form-card" id="register-form" hidden>
+              <h3>Registro de usuario</h3>
+              <p class="form-hint">Al registrarte, tu cuenta tendrá el rol Cliente (CUSTOMER).</p>
+              <label>
+                Nombre completo
+                <input type="text" name="name" placeholder="Nombre y apellido" required />
+              </label>
+              <label>
+                Correo electrónico
+                <input type="email" name="email" placeholder="cliente@rioclaro.local" required />
+              </label>
+              <label>
+                Contraseña
+                <input type="password" name="password" placeholder="Debe incluir mayúscula, número y símbolo" required />
+              </label>
+              <button class="primary-button" type="submit">Crear cuenta</button>
+              <button class="text-button" id="show-login-button" type="button" aria-controls="login-form">Ya tengo cuenta · Iniciar sesión</button>
+            </form>
+          </div>
+          <p class="form-feedback" id="auth-feedback" role="status"></p>
+          <p class="integration-note">La recuperación de contraseña y MFA requieren configurar un proveedor de correo/SMS antes de habilitarse.</p>
+        </section>
+
+        <section class="view-panel" id="dashboard-view">
+          <div class="summary-grid" id="summary-grid"></div>
+
+          <div class="dashboard-grid">
+            <section class="panel-card">
+              <div class="section-header">
+                <h3>Inventario</h3>
+                <button class="secondary-button" type="button" id="refresh-products-button">Actualizar</button>
+              </div>
+              <div id="products-table" class="table-wrap"></div>
+              <form id="product-form" class="inline-form admin-only">
+                <input type="text" name="name" placeholder="Nombre" required />
+                <input type="text" name="category" placeholder="Categoría" required />
+                <input type="number" name="price" placeholder="Precio" step="0.01" required />
+                <input type="number" name="stock" placeholder="Stock" required />
+                <button type="submit" class="primary-button">Agregar</button>
+              </form>
+            </section>
+
+            <section class="panel-card customer-only" id="catalog-card">
+              <div class="section-header">
+                <h3>Catálogo y pedidos</h3>
+              </div>
+              <form id="checkout-form" class="inline-form narrow">
+                <select id="checkout-product" name="productId" required aria-label="Producto"></select>
+                <input type="number" name="quantity" placeholder="Cantidad" min="1" value="1" required />
+                <button type="submit" class="primary-button">Crear pedido</button>
+              </form>
+            </section>
+
+            <section class="panel-card">
+              <div class="section-header">
+                <h3>Pedidos</h3>
+                <button class="secondary-button" type="button" id="refresh-orders-button">Actualizar</button>
+              </div>
+              <div id="orders-table" class="table-wrap"></div>
+              <form id="order-form" class="inline-form admin-only">
+                <input type="text" name="customer" placeholder="Cliente" required />
+                <input type="email" name="customerEmail" placeholder="Correo del cliente (opcional)" />
+                <input type="number" name="total" placeholder="Total" step="0.01" required />
+                <input type="text" name="status" placeholder="Estado" value="Procesando" required />
+                <button type="submit" class="primary-button">Crear pedido</button>
+              </form>
+            </section>
+
+            <section class="panel-card sales-only">
+              <div class="section-header">
+                <h3>Reportes y ventas</h3>
+              </div>
+              <div id="reports-panel" class="report-list"></div>
+            </section>
+
+            <section class="panel-card">
+              <div class="section-header">
+                <h3>Notificaciones</h3>
+              </div>
+              <div id="notifications-list" class="notification-list"></div>
+              <form id="notification-form" class="inline-form narrow admin-only">
+                <input type="text" name="title" placeholder="Título" required />
+                <input type="text" name="message" placeholder="Mensaje" required />
+                <select id="notification-recipient" name="userId">
+                  <option value="">Administradores</option>
+                </select>
+                <select name="level">
+                  <option value="info">Info</option>
+                  <option value="warning">Advertencia</option>
+                  <option value="success">Éxito</option>
+                </select>
+                <button type="submit" class="primary-button">Enviar</button>
+              </form>
+            </section>
+
+            <section class="panel-card">
+              <div class="section-header">
+                <h3>Facturación</h3>
+              </div>
+              <div id="invoices-list" class="report-list"></div>
+              <form id="invoice-form" class="inline-form narrow admin-only">
+                <input type="text" name="customer" placeholder="Cliente" required />
+                <input type="email" name="customerEmail" placeholder="Correo del cliente (opcional)" />
+                <input type="number" name="amount" placeholder="Monto" step="0.01" required />
+                <input type="text" name="status" placeholder="Estado" value="Pendiente" required />
+                <button type="submit" class="primary-button">Crear factura</button>
+              </form>
+            </section>
+
+            <section class="panel-card admin-only">
+              <div class="section-header">
+                <h3>Administración de roles</h3>
+              </div>
+              <div id="users-list" class="user-list"></div>
+              <form id="user-form" class="inline-form narrow">
+                <input type="text" name="name" placeholder="Nombre" required />
+                <input type="email" name="email" placeholder="Correo" required />
+                <input type="password" name="password" placeholder="Contraseña segura" required />
+                <select name="role">
+                  <option value="CUSTOMER">CUSTOMER</option>
+                  <option value="USER">USER</option>
+                  <option value="CUSTOMER_VIEWER">CUSTOMER VIEWER</option>
+                  <option value="SALES_AGENT">SALES AGENT</option>
+                  <option value="LOGISTICS">LOGISTICS</option>
+                  <option value="ADMIN">ADMIN</option>
+                </select>
+                <button type="submit" class="primary-button">Crear usuario</button>
+              </form>
+              <form id="role-form" class="inline-form narrow">
+                <input type="text" name="userId" placeholder="ID del usuario" required />
+                <select name="role">
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">USER</option>
+                  <option value="CUSTOMER">CUSTOMER</option>
+                  <option value="CUSTOMER_VIEWER">CUSTOMER VIEWER</option>
+                  <option value="SALES_AGENT">SALES AGENT</option>
+                  <option value="LOGISTICS">LOGISTICS</option>
+                </select>
+                <button type="submit" class="primary-button">Actualizar</button>
+              </form>
+            </section>
+          </div>
+        </section>
+
+        <section class="view-panel" id="chat-view">
+          <div class="chat-panel panel-card">
+            <div class="chat-header">
+              <h3>Agente de Atención a Clientes</h3>
+            </div>
+            <div id="chat-window" class="chat-window" aria-live="polite"></div>
+            <form id="chat-form" class="chat-form" novalidate>
+              <textarea id="message-input" rows="2" maxlength="2000" placeholder="Escribe tu consulta para atención a clientes..."></textarea>
+              <button id="send-button" type="submit">Enviar</button>
+            </form>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="message-dialog">
+      <form method="dialog" class="dialog-card">
+        <p id="dialog-message"></p>
+        <button class="primary-button">Aceptar</button>
+      </form>
+    </dialog>
+
+    <script type="module" src="/js/portal.js"></script>
+  </body>
+</html>

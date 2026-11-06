@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Río Claro: productos, atención y servicios para acompañarte en cada camino." />
+    <meta name="theme-color" content="#f6f7ed" />
+    <title>Río Claro | Productos y servicios</title>
+    <link rel="stylesheet" href="/site.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#catalogo" aria-label="Río Claro, catálogo de productos">
+        <span class="brand-mark" aria-hidden="true">RC</span>
+        <span>Río Claro</span>
+      </a>
+      <div class="header-controls">
+        <button class="theme-toggle" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Modo oscuro">
+          <span class="theme-toggle-track" aria-hidden="true"></span>
+          <span>Oscuro</span>
+        </button>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menú</button>
+      </div>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
+        <div class="tab-list" role="tablist" aria-label="Secciones de Río Claro">
+          <button class="tab-button" id="tab-catalogo" type="button" role="tab" aria-selected="true" aria-controls="catalogo" data-tab="catalogo">Inicio</button>
+          <button class="tab-button" id="tab-inicio" type="button" role="tab" aria-selected="false" aria-controls="inicio" data-tab="inicio" tabindex="-1">Atención a clientes</button>
+          <button class="tab-button" id="tab-nosotros" type="button" role="tab" aria-selected="false" aria-controls="nosotros" data-tab="nosotros" tabindex="-1">Nosotros</button>
+          <button class="tab-button" id="tab-servicios" type="button" role="tab" aria-selected="false" aria-controls="servicios" data-tab="servicios" tabindex="-1">Servicios</button>
+        </div>
+        <a class="nav-portal" id="portal-account-link" href="/portal#auth">Acceso al portal</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="tab-panel catalog section-wrap" id="catalogo" role="tabpanel" aria-labelledby="tab-catalogo" tabindex="0">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Una selección para ti</div>
+            <h1>Catálogo de productos</h1>
+          </div>
+          <a class="text-link" href="/portal#auth">Comprar en el portal <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="catalog-note" id="catalog-note" role="status">Cargando productos…</p>
+        <div class="product-grid" id="product-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="tab-panel home-panel" id="inicio" role="tabpanel" aria-labelledby="tab-inicio" tabindex="0" hidden>
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Atención a clientes</p>
+            <h1>Estamos para <span>ayudarte.</span></h1>
+            <p class="hero-description">¿Tienes dudas sobre un producto o pedido? Nuestro equipo de atención puede orientarte y ayudarte a encontrar lo que necesitas.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#customer-chat">Iniciar conversación <span aria-hidden="true">↓</span></a>
+              <a class="button button-quiet" href="#catalogo">Volver al catálogo</a>
+            </div>
+            <div class="trust-note"><span class="trust-dot"></span> Atención y seguimiento en cada etapa</div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="sun"></div>
+            <div class="hill hill-back"></div>
+            <div class="hill hill-front"></div>
+            <div class="river"></div>
+            <div class="art-label"><span>RÍO CLARO</span><strong>Estamos contigo</strong></div>
+          </div>
+        </section>
+        <section class="customer-chat section-wrap" id="customer-chat" aria-labelledby="customer-chat-title">
+          <div class="section-heading">
+            <div>
+              <div class="section-kicker">Asistente virtual</div>
+              <h2 id="customer-chat-title">Agente de Atención a Clientes</h2>
+            </div>
+          </div>
+          <div class="customer-chat-panel" id="customer-chat-panel">
+            <div class="customer-chat-window" id="customer-chat-window" role="log" aria-live="polite" aria-label="Conversación con Atención a Clientes"></div>
+            <form class="customer-chat-form" id="customer-chat-form">
+              <label class="visually-hidden" for="customer-chat-input">Escribe tu mensaje</label>
+              <textarea id="customer-chat-input" rows="2" maxlength="2000" placeholder="Escribe tu consulta..." required></textarea>
+              <button class="button button-primary" id="customer-chat-send" type="submit">Enviar</button>
+            </form>
+          </div>
+        </section>
+        <section class="closing-banner">
+          <div>
+            <p class="eyebrow">Atención personalizada</p>
+            <h2>Cuéntanos cómo podemos ayudarte</h2>
+            <p>Conversa aquí con nuestro agente de atención a clientes.</p>
+          </div>
+          <a class="button button-light" href="#customer-chat">Ir al chat <span aria-hidden="true">↑</span></a>
+        </section>
+      </section>
+
+      <section class="intro section-wrap tab-panel" id="nosotros" role="tabpanel" aria-labelledby="tab-nosotros" tabindex="0" hidden>
+        <div class="section-kicker">Bienvenido a Río Claro</div>
+        <div class="intro-grid">
+          <h2>Una experiencia clara, desde el primer contacto.</h2>
+          <p>Queremos que encontrar lo que buscas y recibir ayuda sea sencillo. Nuestro sitio reúne el catálogo de productos, el seguimiento de pedidos y un canal de atención para acompañarte cuando lo necesites.</p>
+        </div>
+        <div class="value-row">
+          <article><span class="value-number">01</span><h3>Atención cercana</h3><p>Un equipo listo para orientarte.</p></article>
+          <article><span class="value-number">02</span><h3>Información clara</h3><p>Consulta productos y disponibilidad.</p></article>
+          <article><span class="value-number">03</span><h3>Seguimiento simple</h3><p>Revisa pedidos y avisos desde tu portal.</p></article>
+        </div>
+      </section>
+
+      <section class="services section-wrap tab-panel" id="servicios" role="tabpanel" aria-labelledby="tab-servicios" tabindex="0" hidden>
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Todo en un mismo lugar</div>
+            <h2>Servicios pensados para ti</h2>
+          </div>
+          <a class="text-link" href="/portal#auth">Conoce tu portal <span aria-hidden="true">→</span></a>
+        </div>
+        <div class="service-grid">
+          <article class="service-card service-feature">
+            <span class="service-icon" aria-hidden="true">↗</span>
+            <p class="eyebrow">01 / Atención</p>
+            <h3>Estamos para ayudarte</h3>
+            <p>Conversa con nuestro asistente para resolver dudas sobre productos, pedidos y servicios.</p>
+            <a href="/portal#chat">Iniciar conversación <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card">
+            <span class="service-icon" aria-hidden="true">▦</span>
+            <p class="eyebrow">02 / Catálogo de productos</p>
+            <h3>Encuentra lo que buscas</h3>
+            <p>Explora artículos disponibles y conoce sus precios antes de hacer tu pedido.</p>
+            <a href="#catalogo">Ver productos <span aria-hidden="true">→</span></a>
+          </article>
+          <article class="service-card">
+            <span class="service-icon" aria-hidden="true">◎</span>
+            <p class="eyebrow">03 / Seguimiento</p>
+            <h3>Tu compra, al día</h3>
+            <p>Accede a tus pedidos, notificaciones y facturas desde un espacio personal.</p>
+            <a href="/portal#auth">Entrar al portal <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand" href="#catalogo"><span class="brand-mark" aria-hidden="true">RC</span><span>Río Claro</span></a>
+      <p>Productos, servicio y atención en un solo lugar.</p>
+      <div class="footer-links"><a href="#servicios">Servicios</a><a href="#catalogo">Catálogo de productos</a><a href="/portal">Portal</a></div>
+      <small>© <span id="current-year"></span> Río Claro</small>
+    </footer>
+    <script type="module" src="/js/site.js"></script>
+  </body>
+</html>
